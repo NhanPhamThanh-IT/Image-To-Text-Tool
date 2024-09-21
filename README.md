@@ -13,14 +13,16 @@
 ### Linux (Ubuntu)
 
 1. Open a terminal and run the following commands:
-   ```bash
-   sudo apt update
-   sudo apt install tesseract-ocr
-   ```
+
+```bash
+sudo apt update
+sudo apt install tesseract-ocr
+```
 2. To install additional language support (e.g., Vietnamese):
-    ```bash
-    sudo apt install tesseract-ocr-vie
-    ```
+    
+```bash
+sudo apt install tesseract-ocr-vie
+```
 
 ### macOS
 
@@ -44,7 +46,7 @@ brew install tesseract-lang
 
 ## Usage
 
-Once Tesseract is installed, you can use the __pytesseract__ library in Python to interact with the Tesseract OCR engine. To verify the installation:
+Once Tesseract is installed, you can use the `pytesseract` library in Python to interact with the Tesseract OCR engine. To verify the installation:
 
 ```bash
 tesseract --version
