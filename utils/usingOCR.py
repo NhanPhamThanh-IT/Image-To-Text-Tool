@@ -1,4 +1,3 @@
-from PIL import Image
 import torch
 import easyocr
 from utils.support import load_image
@@ -39,7 +38,7 @@ class OCR:
         text = pytesseract.image_to_string(self.img, lang='vie')
 
         if not text:
-            reader = easyocr.Reader(['vi', 'en'], gpu=torch.cuda.is_available())
+            reader = easyocr.Reader(['vi'], gpu=torch.cuda.is_available())
             results = reader.readtext(self.path)
             text = ' '.join([result[1] for result in results])
         
