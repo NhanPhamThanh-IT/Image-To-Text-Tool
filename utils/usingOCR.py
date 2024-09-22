@@ -1,34 +1,46 @@
 from PIL import Image
-import pytesseract
+import torch
+import easyocr
+from utils.support import load_image
 
 class OCR:
     """
-    A class to perform Optical Character Recognition (OCR) on images.
+    A class to perform Optical Character Recognition (OCR) on images using either Tesseract or EasyOCR.
 
     Attributes:
-        img (Image.Image): The image to be processed for text extraction.
+        path (str): The file path to the image to be processed.
+        img (Image.Image): The loaded image to be processed for text extraction.
     """
 
-    def __init__(self, img : Image.Image) -> None:
+    def __init__(self, path: str) -> None:
         """
-        Initializes the OCR class with an image.
+        Initializes the OCR class with the path to an image.
 
         Args:
-            img (Image.Image): The image to be processed for OCR.
+            path (str): The file path to the image to be processed for OCR.
         """
-        self.img = img
+        self.path = path
+        self.img = load_image(path)
     
     def get_text(self, pytesseract) -> str:
         """
-        Extracts text from the image using the specified Tesseract OCR engine.
+        Extracts text from the image using Tesseract OCR. If Tesseract fails to extract text, 
+        EasyOCR is used as a fallback method.
 
         Args:
             pytesseract: The Tesseract OCR module used for text extraction.
 
         Returns:
-            str: The extracted text from the image.
+            str: The extracted text from the image using Tesseract or EasyOCR.
 
         Raises:
-            Exception: If an error occurs during text extraction.
+            Exception: If an error occurs during text extraction or if neither engine can extract text.
         """
-        return pytesseract.image_to_string(self.img, lang='vie')
+        text = pytesseract.image_to_string(self.img, lang='vie')
+
+        if not text:
+            reader = easyocr.Reader(['vi', 'en'], gpu=torch.cuda.is_available())
+            results = reader.readtext(self.path)
+            text = ' '.join([result[1] for result in results])
+        
+        return text
