@@ -1,16 +1,40 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewpoint" content="width=device-width, initial-scale=1.0">
-        <title>OCR Magic: Transforming Images into Text</title>
-        <style>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OCR App</title>
+    <style>
+        .body {
+            width: 100vw;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+            padding-top: 20px;
+            padding-bottom: 20px;
+            overflow-x: hidden;
+            display: flex;
+            justify-content: center;
+        }
+        .box {
+            width: 90%;
+            border-radius: 10px;
+            padding: 5px;
+            border: 1px solid black;
+            background-color: white;
+        }
+    </style>
+</head>
+<body class="body">
+    <div class="box">
+        <form action="/upload" method="post" enctype="multipart/form-data">
+            <label for="imageUpload">Upload an image:</label>
+            <input type="file" id="imageUpload" name="image" accept="image/*">
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+    <script>
 
-        </style>
-    </head>
-    <body>
-        <script>
-
-        </script>
-    </body>
+    </script>      
+</body>
 </html>
