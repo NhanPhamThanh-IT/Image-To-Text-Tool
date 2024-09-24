@@ -45,3 +45,19 @@ def save_file(file_path: str, text: str) -> None:
             file.write(text)
     except IOError as e:
         raise IOError(f"An error occurred while writing to the file: {e} !")
+
+def allowed_file(filename : str) -> bool:
+    """
+    Check if a given filename has an allowed extension.
+
+    This function verifies if the file extension of the provided filename
+    is one of the allowed types (png, jpg, jpeg, gif). The check is case-insensitive.
+
+    Args:
+        filename (str): The name of the file to check.
+
+    Returns:
+        bool: True if the file extension is allowed, False otherwise.
+    """
+    ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif'}
+    return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
