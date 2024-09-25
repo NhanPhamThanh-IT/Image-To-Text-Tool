@@ -28,6 +28,7 @@
             font-weight: bold;
         }
         .small-box {
+            font-weight: bold;
             background-color: #f0f0f0;
             border: 1px solid black;
             border-radius: 10px;
@@ -47,31 +48,37 @@
 <body class="body">
     <div class="box">
         <form action="/upload" method="post" enctype="multipart/form-data" class="form" align="center">
-            <label for="imageUpload1">Upload an image:</label>
-            <input type="file" id="imageUpload1" name="image1" accept="image/*" onchange="previewImage(event)">
-            <button type="submit" sytle="font-weight: bold">Submit</button>
+            <label for="imageUpload1" style="font-weight: bold;">Upload an image:</label>
+            <input type="file" id="imageUpload1" name="image" accept="image/*" onchange="previewImage(event)">
+            <button type="submit" class="small-box">Submit</button>
         </form>
-        <img id="preview" src="" alt="Image Preview" style="display: none;">
     </div>
     <br>
     {% if warning %}
-        <div class="box">
+        <div class="box" style="padding-top: 10px; padding-bottom: 10px;" id="notification-box">
             <p>{{ warning }}</p>
+        </div>
+    {% endif %}
+    
+    {% if content %}
+        <div class="box" style="padding-top: 10px; padding-bottom: 10px;">
+            <p>{{ content }}</p>
         </div>
     {% endif %}
     <script>
         function previewImage(event) {
+            const notification = document.getElementById('notification-box');
+            notification.style.display = 'none';
             const file = event.target.files[0];
             const reader = new FileReader();
             reader.onload = function(e) {
-                const img = document.getElementById('preview');
+                const img = document.createElement('img');
                 img.src = e.target.result;
-                img.style.display = 'block';
-            }
+                img.style.maxWidth = '300px';
+                document.body.appendChild(img);
+            };
             if (file) {
                 reader.readAsDataURL(file);
-            } else {
-                document.getElementById('preview').style.display = 'none';
             }
         }
     </script>      
