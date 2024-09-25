@@ -18,19 +18,15 @@ def main_page():
 @app.route('/upload', methods=['POST'])
 def upload_file():
     if 'image' not in request.files:
-        return 'No file part'
-    
+        return render_template('home.html', warning='No file part !')
     file = request.files['image']
-
     if file.filename == '':
-        return 'No selected file'
-    
+        return render_template('home.html', warning='No selected file !')
     if file and allowed_file(file.filename):
         filename = file.filename
         file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
-        return 'File uploaded successfully'
-    
-    return 'File type not allowed'
+        return render_template('home.html', warning='File uploaded successfully !')
+    return render_template('home.html', warning='File type not allowed !')
 
 if __name__ == "__main__":
     if not os.path.exists("uploads"):
