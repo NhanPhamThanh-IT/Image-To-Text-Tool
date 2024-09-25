@@ -1,4 +1,5 @@
 from PIL import Image
+import os
 
 def load_image(file_path: str) -> Image.Image:
     """
@@ -61,3 +62,39 @@ def allowed_file(filename : str) -> bool:
     """
     ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif'}
     return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
+
+def remove_directories(folder_path: str) -> None:
+    """
+    Recursively deletes all files and subdirectories within a given root directory,
+    then removes the root directory itself.
+
+    Args:
+        folder_path (str): The path to the directory that needs to be deleted.
+
+    Returns:
+        None
+
+    Raises:
+        FileNotFoundError: If the directory or file does not exist.
+        PermissionError: If there are insufficient permissions to delete files or directories.
+        OSError: If any error occurs while removing files or directories.
+    """
+    try:
+        for item in os.listdir(folder_path):
+            item_path = os.path.join(folder_path, item)
+            if os.path.isfile(item_path):
+                try:
+                    os.remove(item_path)
+                except PermissionError as e:
+                    print(f"Unable to delete file {item_path}: {e}")
+                except OSError as e:
+                    print(f"Error while deleting file {item_path}: {e}")
+            else:
+                remove_directories(item_path)
+        os.removedirs(folder_path)
+    except FileNotFoundError as e:
+        print(f"Directory or file not found: {e}")
+    except PermissionError as e:
+        print(f"Insufficient permissions to delete the directory: {e}")
+    except OSError as e:
+        print(f"System error while deleting directory {folder_path}: {e}")
