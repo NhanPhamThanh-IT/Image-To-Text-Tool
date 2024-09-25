@@ -15,7 +15,6 @@
             overflow-x: hidden;
             display: flex;
             flex-direction: column;
-            justify-content: center;
             align-items: center;
         }
         .box {
@@ -25,6 +24,17 @@
             border: 1px solid black;
             box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.5);
             background-color: white;
+            justify-content: center;
+            font-weight: bold;
+        }
+        .small-box {
+            background-color: #f0f0f0;
+            border: 1px solid black;
+            border-radius: 10px;
+        }
+        .form-box {
+            justify-content: center;
+            font-weight: bold;
         }
         #preview {
             margin-top: 20px;
@@ -36,13 +46,19 @@
 </head>
 <body class="body">
     <div class="box">
-        <form action="/upload" method="post" enctype="multipart/form-data">
+        <form action="/upload" method="post" enctype="multipart/form-data" class="form" align="center">
             <label for="imageUpload1">Upload an image:</label>
             <input type="file" id="imageUpload1" name="image1" accept="image/*" onchange="previewImage(event)">
-            <button type="submit">Submit</button>
+            <button type="submit" sytle="font-weight: bold">Submit</button>
         </form>
         <img id="preview" src="" alt="Image Preview" style="display: none;">
     </div>
+    <br>
+    {% if warning %}
+        <div class="box">
+            <p>{{ warning }}</p>
+        </div>
+    {% endif %}
     <script>
         function previewImage(event) {
             const file = event.target.files[0];
