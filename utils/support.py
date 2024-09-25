@@ -18,7 +18,7 @@ def load_image(file_path: str) -> Image.Image:
     if not file_path:
         raise ValueError("File path cannot be empty.")
     try:
-        img = Image.open(file_path)
+        img = Image.open(file_path).convert('RGB')
         img.verify()
         return img
     except FileNotFoundError:
