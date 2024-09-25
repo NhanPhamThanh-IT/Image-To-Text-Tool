@@ -3,7 +3,7 @@ from werkzeug.utils import secure_filename
 import pytesseract
 import os
 from utils.usingOCR import OCR
-from utils.support import allowed_file
+from utils.support import allowed_file, remove_directories
 
 app = Flask(__name__)
 
@@ -28,8 +28,7 @@ def take_local_image():
         file_path = os.path.join(app.config['UPLOAD_FOLDER'], filename)
         file.save(file_path)
         model = OCR(file_path)
-        os.remove(file_path)
-        os.removedirs(UPLOAD_FOLDER)
+        remove_directories(UPLOAD_FOLDER)
         content = model.get_text(pytesseract)
         if not content:
             content = 'Unable to recognize text for this image!'
@@ -37,6 +36,6 @@ def take_local_image():
     return render_template('home.html', warning='File type not allowed!')
 
 if __name__ == "__main__":
-    if not os.path.exists("uploads"):
-        os.makedirs("uploads")
+    if not os.path.exists(UPLOAD_FOLDER):
+        os.makedirs(UPLOAD_FOLDER)
     app.run(debug=True)
