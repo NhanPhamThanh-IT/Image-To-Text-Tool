@@ -14,27 +14,50 @@
             padding-bottom: 20px;
             overflow-x: hidden;
             display: flex;
+            flex-direction: column;
             justify-content: center;
+            align-items: center;
         }
         .box {
-            width: 90%;
+            width: 95%;
             border-radius: 10px;
-            padding: 5px;
+            padding: 20px;
             border: 1px solid black;
+            box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.5);
             background-color: white;
+        }
+        #preview {
+            margin-top: 20px;
+            max-width: 100%;
+            max-height: 400px;
+            display: none;
         }
     </style>
 </head>
 <body class="body">
     <div class="box">
         <form action="/upload" method="post" enctype="multipart/form-data">
-            <label for="imageUpload">Upload an image:</label>
-            <input type="file" id="imageUpload" name="image" accept="image/*">
+            <label for="imageUpload1">Upload an image:</label>
+            <input type="file" id="imageUpload1" name="image1" accept="image/*" onchange="previewImage(event)">
             <button type="submit">Submit</button>
         </form>
+        <img id="preview" src="" alt="Image Preview" style="display: none;">
     </div>
     <script>
-
+        function previewImage(event) {
+            const file = event.target.files[0];
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                const img = document.getElementById('preview');
+                img.src = e.target.result;
+                img.style.display = 'block';
+            }
+            if (file) {
+                reader.readAsDataURL(file);
+            } else {
+                document.getElementById('preview').style.display = 'none';
+            }
+        }
     </script>      
 </body>
 </html>
