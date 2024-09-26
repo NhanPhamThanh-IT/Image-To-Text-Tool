@@ -4,46 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Image To Text Tool</title>
-    <style>
-        .body {
-            width: 100vw;
-            background-color: #f0f0f0;
-            margin: 0;
-            padding: 0;
-            padding-top: 20px;
-            padding-bottom: 20px;
-            overflow-x: hidden;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-        .box {
-            width: 95%;
-            border-radius: 10px;
-            padding: 20px;
-            border: 1px solid black;
-            box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.5);
-            background-color: white;
-            justify-content: center;
-            font-weight: bold;
-        }
-        .small-box {
-            font-weight: bold;
-            background-color: #f0f0f0;
-            border: 1px solid black;
-            border-radius: 10px;
-        }
-        .form-box {
-            justify-content: center;
-            font-weight: bold;
-        }
-        #preview {
-            margin-top: 20px;
-            max-width: 100%;
-            max-height: 400px;
-            display: none;
-        }
-    </style>
+    <!-- Liên kết file CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
 </head>
 <body class="body">
     <div class="box">
@@ -65,25 +27,7 @@
             <p>{{ content }}</p>
         </div>
     {% endif %}
-    <script>
-        function previewImage(event) {
-            const file = event.target.files[0];
-            const preview = document.getElementById('preview');
-            const notification = document.getElementById('notification-box');
-            const result = document.getElementById('result-box');
-            if (notification) notification.style.display = 'none';
-            if (result) result.style.display = 'none';
-            if (file) {
-                const reader = new FileReader();
-                reader.onload = function(e) {
-                    preview.src = e.target.result;
-                    preview.style.display = 'block';
-                };
-                reader.readAsDataURL(file);
-            } else {
-                preview.style.display = 'none';
-            }
-        }
-    </script>      
+    <!-- Liên kết file JavaScript -->
+    <script src="{{ url_for('static', filename='scripts.js') }}"></script>      
 </body>
 </html>
