@@ -10,7 +10,7 @@
 </head>
 <body class="body">
     <h1>Image Reader - Decoding Visual Words</h1>
-    <div class="image-container"></div>
+    <div class="image-container">
         <img id="preview" alt="Image Preview">
     </div>
     <div class="box">
@@ -22,14 +22,26 @@
     </div>
     <br>
     {% if warning %}
-        <div class="box" style="padding-top: 10px; padding-bottom: 10px;" id="notification-box">
+        <h1>Warning</h1>
+        <br>
+        <div class="warning-box" style="padding-top: 10px; padding-bottom: 10px;" id="notification-box">
             <p>{{ warning }}</p>
         </div>
     {% endif %}
     {% if content %}
+        <h1>Outcome</h1>
+        <br>
         <div class="box" style="padding-top: 10px; padding-bottom: 10px;" id="result-box">
-            <p>{{ content }}</p>
+            <p id="content">{{ content }}</p>
         </div>
+        <br>
+        <table style="border: none;">
+            <tr>
+                <td><button onclick="copyContent()" style="justify-content: right;">Copy</button></td>
+                <td><button style="justify-content: right;">Save</button></td>
+            </tr>
+        </table>
+        <div id="copy-notification" style="display:none; color: green;">Content has been copied to the clipboard!</div>
     {% endif %}
     <!-- Liên kết file JavaScript -->
     <script src="{{ url_for('static', filename='scripts.js') }}"></script>      
