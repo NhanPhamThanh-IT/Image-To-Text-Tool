@@ -16,3 +16,16 @@ function previewImage(event) {
         preview.style.display = 'none';
     }
 }
+
+function copyContent() {
+    var content = document.getElementById('content').innerText;
+    navigator.clipboard.writeText(content).then(function() {
+        var notification = document.getElementById('copy-notification');
+        notification.style.display = 'block';
+        setTimeout(function() {
+            notification.style.display = 'none';
+        }, 1000);
+    }, function(err) {
+        alert('An error occurred while copying the content: ' + err);
+    });
+}
