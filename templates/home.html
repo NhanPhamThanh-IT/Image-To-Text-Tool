@@ -14,7 +14,9 @@
             <input type="file" id="imageUpload1" name="image" accept="image/*" onchange="previewImage(event)">
             <button type="submit" class="small-box">Submit</button>
         </form>
-        <img id="preview" alt="Image Preview">
+        <div class="image-container">
+            <img id="preview" alt="Image Preview">
+        </div>
     </div>
     <br>
     {% if warning %}
