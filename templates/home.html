@@ -22,26 +22,30 @@
     </div>
     <br>
     {% if warning %}
-        <h1>Warning</h1>
-        <br>
-        <div class="warning-box" style="padding-top: 10px; padding-bottom: 10px;" id="notification-box">
-            <p>{{ warning }}</p>
+        <div id="notification-box" style="width: 100%; text-align: center;">
+            <h1>Warning</h1>
+            <br>
+            <div class="warning-box" style="width: 90%; margin: 0 auto;">
+                <p style="text-align: justify;">{{ warning }}</p>
+        </div>
         </div>
     {% endif %}
     {% if content %}
-        <h1>Outcome</h1>
-        <br>
-        <div class="box" style="padding-top: 10px; padding-bottom: 10px;" id="result-box">
-            <p id="content">{{ content }}</p>
-        </div>
-        <br>
-        <table style="border: none;">
-            <tr>
-                <td><button onclick="copyContent()" style="justify-content: right;">Copy</button></td>
-                <td><button style="justify-content: right;">Save</button></td>
-            </tr>
-        </table>
-        <div id="copy-notification" style="display:none; color: green;">Content has been copied to the clipboard!</div>
+        <div id="result-box" style="width: 100%; text-align: center;">
+            <h1>Outcome</h1>
+            <br>
+            <div class="box" style="width: 90%; margin: 0 auto;">
+                <p id="content" style="text-align: justify;">{{ content }}</p>
+            </div>
+            <br>
+            <table style="border: none; margin: 0 auto;">
+                <tr>
+                    <td><button onclick="copyContent()">Copy</button></td>
+                    <td><button>Save</button></td>
+                </tr>
+            </table>
+            <div id="copy-notification" style="display:none; color: green;">Content has been copied to the clipboard!</div>
+        </div>    
     {% endif %}
     <!-- Liên kết file JavaScript -->
     <script src="{{ url_for('static', filename='scripts.js') }}"></script>      
