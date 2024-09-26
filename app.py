@@ -25,6 +25,8 @@ def take_local_image():
         return render_template('home.html', warning='No selected file!')
     if file and allowed_file(file.filename):
         filename = secure_filename(file.filename)
+        if not os.path.exists(UPLOAD_FOLDER):
+            os.makedirs(UPLOAD_FOLDER)
         file_path = os.path.join(app.config['UPLOAD_FOLDER'], filename)
         file.save(file_path)
         model = OCR(file_path)
@@ -36,6 +38,4 @@ def take_local_image():
     return render_template('home.html', warning='File type not allowed!')
 
 if __name__ == "__main__":
-    if not os.path.exists(UPLOAD_FOLDER):
-        os.makedirs(UPLOAD_FOLDER)
     app.run(debug=True)
