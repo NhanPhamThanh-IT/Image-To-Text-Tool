@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>OCR App</title>
+    <title>Image To Text Tool</title>
     <style>
         .body {
             width: 100vw;
@@ -52,6 +52,7 @@
             <input type="file" id="imageUpload1" name="image" accept="image/*" onchange="previewImage(event)">
             <button type="submit" class="small-box">Submit</button>
         </form>
+        <img id="preview" alt="Image Preview">
     </div>
     <br>
     {% if warning %}
@@ -59,26 +60,28 @@
             <p>{{ warning }}</p>
         </div>
     {% endif %}
-    
     {% if content %}
-        <div class="box" style="padding-top: 10px; padding-bottom: 10px;">
+        <div class="box" style="padding-top: 10px; padding-bottom: 10px;" id="result-box">
             <p>{{ content }}</p>
         </div>
     {% endif %}
     <script>
         function previewImage(event) {
-            const notification = document.getElementById('notification-box');
-            notification.style.display = 'none';
             const file = event.target.files[0];
-            const reader = new FileReader();
-            reader.onload = function(e) {
-                const img = document.createElement('img');
-                img.src = e.target.result;
-                img.style.maxWidth = '300px';
-                document.body.appendChild(img);
-            };
+            const preview = document.getElementById('preview');
+            const notification = document.getElementById('notification-box');
+            const result = document.getElementById('result-box');
+            if (notification) notification.style.display = 'none';
+            if (result) result.style.display = 'none';
             if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    preview.src = e.target.result;
+                    preview.style.display = 'block';
+                };
                 reader.readAsDataURL(file);
+            } else {
+                preview.style.display = 'none';
             }
         }
     </script>      
