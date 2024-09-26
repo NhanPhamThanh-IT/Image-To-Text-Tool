@@ -10,15 +10,15 @@
 </head>
 <body class="body">
     <h1>Image Reader - Decoding Visual Words</h1>
+    <div class="image-container"></div>
+        <img id="preview" alt="Image Preview">
+    </div>
     <div class="box">
         <form action="/upload" method="post" enctype="multipart/form-data" class="form" align="center">
             <label for="imageUpload1" style="font-weight: bold;">Upload an image:</label>
             <input type="file" id="imageUpload1" name="image" accept="image/*" onchange="previewImage(event)">
             <button type="submit" class="small-box">Submit</button>
         </form>
-        <div class="image-container">
-            <img id="preview" alt="Image Preview">
-        </div>
     </div>
     <br>
     {% if warning %}
