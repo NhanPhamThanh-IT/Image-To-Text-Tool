@@ -1,6 +1,7 @@
 import torch
 import easyocr
 from utils.support import load_image
+from utils.language_detection_and_text_checker import remove_misspelled
 
 class OCR:
     """
@@ -23,23 +24,22 @@ class OCR:
     
     def get_text(self, pytesseract) -> str:
         """
-        Extracts text from the image using Tesseract OCR. If Tesseract fails to extract text, 
-        EasyOCR is used as a fallback method.
+        Extracts text from an image using Tesseract OCR with Vietnamese language detection. If Tesseract fails to extract 
+        any text, EasyOCR is used as a fallback method. After extraction, the text is processed to remove misspelled words.
 
         Args:
-            pytesseract: The Tesseract OCR module used for text extraction.
+            pytesseract: The Tesseract OCR module used for text extraction from the image.
 
         Returns:
-            str: The extracted text from the image using Tesseract or EasyOCR.
+            str: The cleaned and extracted text from the image using either Tesseract or EasyOCR.
 
         Raises:
-            Exception: If an error occurs during text extraction or if neither engine can extract text.
+            Exception: If both Tesseract and EasyOCR fail to extract text from the image.
         """
         text = pytesseract.image_to_string(self.img, lang='vie')
-
         if not text:
             reader = easyocr.Reader(['vi'], gpu=torch.cuda.is_available())
             results = reader.readtext(self.path)
             text = ' '.join([result[1] for result in results])
-        
+        text = remove_misspelled(text)
         return text
