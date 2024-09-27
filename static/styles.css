@@ -75,3 +75,30 @@ button:hover {
     justify-content: center;
     font-weight: bold;
 }
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: white;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+    width: 210%
+}
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+.dropdown-content button {
+    border: solid 1px black;
+    background: none;
+    color: black;
+    text-align: justify;
+    cursor: pointer;
+    width: 100%;
+    display: inline-block;
+}
+.dropdown-content button:hover {
+    background-color: #f1f1f1;
+}
