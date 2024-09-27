@@ -1,4 +1,4 @@
-from PIL import Image
+from PIL import Image, ImageFilter, ImageOps
 import os
 
 def load_image(file_path: str) -> Image.Image:
