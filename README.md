@@ -1,5 +1,9 @@
 <div align="justify">
 
+## Documentations
+
+1. <a herf='https://github.com/NhanPhamThanh-IT/Image-To-Text-Tool/blob/main/TheoreticalDocuments/OCR.md'><strong>OCR documents</strong></a>
+
 ## Installation
 
 ### Windows
@@ -51,5 +55,21 @@ Once Tesseract is installed, you can use the `pytesseract` library in Python to 
 ```bash
 tesseract --version
 ```
+
+## How to use this app?
+
+Run this app in terminal:
+
+```bash
+python app.py
+```
+
+After run this app, you can see in the terminal the link to open the website in your local device. For example:
+
+```
+Running on http://127.0.0.1:5000
+```
+
+You should follow the link to view the webite and doing method in this.
 
 </div>
