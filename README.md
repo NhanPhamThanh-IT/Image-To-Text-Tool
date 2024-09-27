@@ -2,7 +2,7 @@
 
 ## Documentations
 
-1. <a herf='https://github.com/NhanPhamThanh-IT/Image-To-Text-Tool/blob/main/TheoreticalDocuments/OCR.md'><strong>OCR documents</strong></a>
+1. <a href='https://github.com/NhanPhamThanh-IT/Image-To-Text-Tool/blob/main/TheoreticalDocuments/OCR.md'><strong>OCR documents</strong></a>
 
 ## Installation
 
