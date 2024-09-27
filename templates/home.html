@@ -22,12 +22,11 @@
     </div>
     <br>
     {% if warning %}
+        <br>
         <div id="notification-box" style="width: 100%; text-align: center;">
-            <h1>Warning</h1>
-            <br>
             <div class="warning-box" style="width: 90%; margin: 0 auto;">
                 <p style="text-align: justify;">{{ warning }}</p>
-        </div>
+            </div>
         </div>
     {% endif %}
     {% if content %}
