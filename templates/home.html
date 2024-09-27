@@ -41,7 +41,16 @@
             <table style="border: none; margin: 0 auto;">
                 <tr>
                     <td><button onclick="copyContent()">Copy</button></td>
-                    <td><button>Save</button></td>
+                    <td>
+                        <div class="dropdown">
+                            <button class="dropbtn">Save</button>
+                            <div class="dropdown-content">
+                                <button onclick="saveContent('txt')">Text (.txt)</button>
+                                <button onclick="saveContent('md')">Markdown (.md)</button>
+                                <button onclick="saveContent('html')">HTML (.html)</button>
+                            </div>
+                        </div>
+                    </td>
                 </tr>
             </table>
             <div id="copy-notification" style="display:none; color: green;">Content has been copied to the clipboard!</div>
