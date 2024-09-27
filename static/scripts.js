@@ -29,3 +29,25 @@ function copyContent() {
         alert('An error occurred while copying the content: ' + err);
     });
 }
+
+function saveContent(format) {
+    const contentText = document.getElementById("content").innerText;
+    let blob, fileName;
+    switch (format) {
+        case "md":
+            blob = new Blob([contentText], { type: 'text/markdown' });
+            fileName = 'content.md';
+            break;
+        case "html":
+            blob = new Blob([`<html><body>${contentText}</body></html>`], { type: 'text/html' });
+            fileName = 'content.html';
+            break;
+        default:
+            blob = new Blob([contentText], { type: 'text/plain' });
+            fileName = 'content.txt';
+    }
+    const link = document.createElement('a');
+    link.href = window.URL.createObjectURL(blob);
+    link.download = fileName;
+    link.click();
+}
