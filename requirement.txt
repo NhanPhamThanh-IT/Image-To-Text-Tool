@@ -3,3 +3,5 @@ pytesseract
 Pillow
 easyocr
 torch
+langdetect
+pyspellchecker
